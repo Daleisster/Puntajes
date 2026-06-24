@@ -1,4 +1,18 @@
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js"
+import {getDatabase, ref, set, onValue} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js"
+const firebaseConfig = {
+    apiKey: "AIzaSyBvEXT5k4kvaqq3jW394Fq5ueom4CxMF2o",
+    authDomain: "puntajes-kutral.firebaseapp.com",
+    databaseURL: "https://puntajes-kutral-default-rtdb.firebaseio.com",
+    projectId: "puntajes-kutral",
+    storageBucket: "puntajes-kutral.firebasestorage.app",
+    messagingSenderId: "1048990383919",
+    appId: "1:1048990383919:web:18ccbea65e0b16435febda"
+}
+const app = initializeApp(firebaseConfig)
+const db = getDatabase(app)
+
 /*/ Declarar variables, objetos y weaitas /*/
 //definir el objeto "Puntajes" con las patrullas y "Eventos"
 let Puntajes = {
@@ -9,6 +23,20 @@ let Puntajes = {
 let Eventos = {}
 let EventoSeleccionado = null
 let EventoEdit = null
+
+onValue(ref(db, "puntajes"), (snapshot) => {
+    let datos = snapshot.val()
+    if (datos) {
+        Puntajes = datos
+        for (let p in Puntajes) {
+            let txt = document.getElementById("Puntaje_"+p)
+            if (txt) {
+                txt.textContent = p + ": " + Puntajes[p]
+            }
+        }
+    }
+})
+
 //ver si es que hay datos guardados y cargarlos en caso de que los haya.
 let savepts = localStorage.getItem("pts")
 if (savepts) {Puntajes=JSON.parse(savepts)}
@@ -53,6 +81,7 @@ function actualizar_puntaje (patrulla) {
     let txt = document.getElementById("Puntaje_"+patrulla)
     txt.textContent = patrulla+": "+Puntajes[patrulla]
     localStorage.setItem("pts",JSON.stringify(Puntajes))
+    set(ref(db, "puntajes"), Puntajes)
 }
 // funcion para actualizar los eventos en pantalla y memoria local
 function actualizar_eventos () {
@@ -89,6 +118,7 @@ function actualizar_eventos () {
     }
         eventlist.innerHTML += "<br>"
     localStorage.setItem("events",JSON.stringify(Eventos))
+    set(ref(db, "eventos"), Eventos)   
 }
 
 //mostrar la pantalla para asignar un evento
