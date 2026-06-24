@@ -23,6 +23,7 @@ let Puntajes = {
 let Eventos = {}
 let EventoSeleccionado = null
 let EventoEdit = null
+let CargandoFirebase = true
 
 onValue(ref(db, "puntajes"), (snapshot) => {
     let datos = snapshot.val()
@@ -35,6 +36,7 @@ onValue(ref(db, "puntajes"), (snapshot) => {
             }
         }
     }
+    CargandoFirebase = false
 })
 
 //ver si es que hay datos guardados y cargarlos en caso de que los haya.
@@ -80,9 +82,14 @@ botonhome2.onclick = function(){
 function actualizar_puntaje (patrulla) {
     let txt = document.getElementById("Puntaje_"+patrulla)
     txt.textContent = patrulla+": "+Puntajes[patrulla]
+
     localStorage.setItem("pts",JSON.stringify(Puntajes))
-    set(ref(db, "puntajes"), Puntajes)
+
+    if (!CargandoFirebase) {
+        set(ref(db, "puntajes"), Puntajes)
+    }
 }
+
 // funcion para actualizar los eventos en pantalla y memoria local
 function actualizar_eventos () {
     let eventlist = document.getElementById("listaeventos")
@@ -118,7 +125,10 @@ function actualizar_eventos () {
     }
         eventlist.innerHTML += "<br>"
     localStorage.setItem("events",JSON.stringify(Eventos))
-    set(ref(db, "eventos"), Eventos)   
+
+    if (!CargandoFirebase) {
+        set(ref(db, "eventos"), Eventos)
+}
 }
 
 //mostrar la pantalla para asignar un evento
