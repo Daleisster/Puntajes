@@ -24,6 +24,7 @@ let Eventos = {}
 let EventoSeleccionado = null
 let EventoEdit = null
 let CargandoFirebase = true
+let EventosCargados = false
 
 onValue(ref(db, "puntajes"), (snapshot) => {
     let datos = snapshot.val()
@@ -38,12 +39,20 @@ onValue(ref(db, "puntajes"), (snapshot) => {
     }
     CargandoFirebase = false
 })
+onValue(ref(db, "eventos"), (snapshot) => {
+    let datos = snapshot.val()
+    if (datos) {
+        Eventos = datos
+        actualizar_eventos()
+    }
+    EventosCargados = true
+})
 
 //ver si es que hay datos guardados y cargarlos en caso de que los haya.
-let savepts = localStorage.getItem("pts")
-if (savepts) {Puntajes=JSON.parse(savepts)}
-let saveevent = localStorage.getItem("events")
-if (saveevent) {Eventos=JSON.parse(saveevent)}
+//let savepts = localStorage.getItem("pts")
+//if (savepts) {Puntajes=JSON.parse(savepts)}
+//let saveevent = localStorage.getItem("events")
+//if (saveevent) {Eventos=JSON.parse(saveevent)}
 
 
 /*/ Pantallas, navegación y esas weaitas/*/
@@ -126,7 +135,7 @@ function actualizar_eventos () {
         eventlist.innerHTML += "<br>"
     localStorage.setItem("events",JSON.stringify(Eventos))
 
-    if (!CargandoFirebase) {
+    if (EventosCargados) {
         set(ref(db, "eventos"), Eventos)
 }
 }
