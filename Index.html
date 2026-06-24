@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head> <title>Puntajes Compañía Kutral Rayen</title> <link rel="stylesheet" href="Styles.css"> </head>
+
+<body>
+<div id="homescreen">
+    <h1>Puntajes CAIN 2026</h1>
+    <button id="gotopoints">Ir a pestaña de puntajes</button>
+    <button id="gotoevents">Ir a pestaña de eventos</button>
+</div>
+
+<div id="pointscreen" hidden>
+    <button id="homefrompoints">Volver a Inicio</button>
+    <h1>Puntajes Patrullas</h1>
+
+    <h2 id="Puntaje_Cuervo">Cuervo: 0</h2>
+    <button id="plus50Cuervo">+50 Cuervo</button>
+    <button id="dcto10Cuervo">-10 Cuervo</button>
+
+    <h2 id="Puntaje_Mapache">Mapache: 0</h2>
+    <button id="plus50Mapache">+50 Mapache</button>
+    <button id="dcto10Mapache">-10 Mapache</button>
+
+    <h2 id="Puntaje_Caracal">Caracal: 0</h2>
+    <button id="plus50Caracal">+50 Caracal</button>
+    <button id="dcto10Caracal">-10 Caracal</button>
+    
+    <br><br><br>
+    <h3>cuidado con reiniciar</h3>
+    <button id="resetPTS">Reiniciar puntajes</button>
+
+</div>
+
+<div id="eventscreen" hidden>
+    <button id="homefromevents">Volver a Inicio</button>
+    <h1>...EVENTOS...</h1>
+
+    <div id="creadorEventos">
+    <h1>Crear un evento</h1>
+    <input id="nuevoNombre" placeholder="Nombre del evento">
+    <br><br>
+    <input id="nuevoPrimero" placeholder="Puntos 1° lugar">
+    <br><br>
+    <input id="nuevoSegundo" placeholder="Puntos 2° lugar">
+    <br><br>
+    <input id="nuevoTercero" placeholder="Puntos 3° lugar">
+    <br><br>
+    <button id="crearEvento">Crear el evento</button>
+    <button id="CancelarMod" hidden>Cancelar</button>
+    </div>
+
+    <div id="asignadorEventos" hidden>
+        <h2 id="eventoAsignando">Asignando: </h2>
+        <p>Cuervo</p>
+        <select id="selCuervo">
+            <option disabled selected>Seleccionar posición</option>
+            <option>primero</option>
+            <option>segundo</option>
+            <option>tercero</option>
+        </select>
+
+        <p>Caracal</p>
+        <select id="selCaracal">
+            <option disabled selected>Seleccionar posición</option>
+            <option>primero</option>
+            <option>segundo</option>
+            <option>tercero</option>
+        </select>
+
+        <p>Mapache</p>
+        <select id="selMapache">
+            <option disabled selected>Seleccionar posición</option>
+            <option>primero</option>
+            <option>segundo</option>
+            <option>tercero</option>
+        </select>
+        <br><br>
+        <button id="commitevento">Aplicar resultados a puntajes</button>
+        <button id="cancelAsign">Cancelar</button>
+    </div>
+
+    <br><br><br>
+
+    <h1>Lista de eventos</h1>
+
+    <div id="listaeventos"></div>
+
+</div>
+    <script src = "Script.js"></script>
+</body>
+</html>
+
+
+
