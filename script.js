@@ -97,10 +97,17 @@ function actualizar_eventos () {
             html += '<div class="evento aplicado">'
             html += "<h2>"+e+" ~ Aplicado ✓"+"</h2>"
             html += "<p>1° "+Eventos[e].Puntajes.primero+" pts ||| 2° "+Eventos[e].Puntajes.segundo+" pts ||| 3° "+Eventos[e].Puntajes.tercero+" pts</p>"
-            for (let lugar in Eventos[e].Resultado)
-                if (lugar==="primero") {html += "<p>1° "+Eventos[e].Resultado.primero.join(" y ")+"</p>"}
-                if (lugar==="segundo") {html += "<p>2° "+Eventos[e].Resultado.segundo.join(" y ")+"</p>"}
-                if (lugar==="tercero") {html += "<p>3° "+Eventos[e].Resultado.tercero.join(" y ")+"</p>"}
+            if (Eventos[e].Resultado) {
+                if (Eventos[e].Resultado.primero) {
+                    html += "<p>1° " + Eventos[e].Resultado.primero.join(" y ") + "</p>"
+                }
+                if (Eventos[e].Resultado.segundo) {
+                    html += "<p>2° " + Eventos[e].Resultado.segundo.join(" y ") + "</p>"
+                }
+                if (Eventos[e].Resultado.tercero) {
+                    html += "<p>3° " + Eventos[e].Resultado.tercero.join(" y ") + "</p>"
+                }
+            }
             html += '</div><br><br>'
         }
 
