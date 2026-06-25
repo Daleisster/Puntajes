@@ -1,66 +1,153 @@
 body {
     font-family: Arial, sans-serif;
-    max-width: 900px;
+    max-width: 1200px;
     margin: auto;
-    padding: 15px;
+    padding: 20px;
+    background: #f4f6f8;
 }
-button {
-    padding: 8px;
-    margin: 3px;
-}
-input {
-    padding: 5px;
-}
-select {
-    padding: 5px;
-}
+
 h1 {
     text-align: center;
 }
-#resetPTS {
-    background: rgb(253, 67, 67);
-    color: rgb(0, 0, 0);
+
+button {
+    padding: 10px;
+    margin: 4px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
 }
-.evento{
+
+button:hover {
+    opacity: 0.9;
+}
+
+input,
+select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #bbb;
+}
+
+/* ===== PATRULLAS ===== */
+
+#pointscreen {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.patrulla {
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.patrulla h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 2.2rem;
+}
+
+/* Cuervo */
+
+.cuervo {
+    background: #e3f2fd;
+    border: 3px solid #1976d2;
+}
+
+/* Caracal */
+
+.caracal {
+    background: #fff3e0;
+    border: 3px solid #ef6c00;
+}
+
+/* Mapache */
+
+.mapache {
+    background: #f3e5f5;
+    border: 3px solid #7b1fa2;
+}
+
+/* ===== BOTONES SUMA ===== */
+
+[id^="plus"] {
+    background: #43a047;
+    color: white;
+}
+
+/* ===== BOTONES RESTA ===== */
+
+[id^="dcto"] {
+    background: #e53935;
+    color: white;
+}
+
+/* ===== REINICIO ===== */
+
+#resetPTS {
+    background: #8b0000;
+    color: white;
+    padding: 14px 20px;
+}
+
+#resetPTS:hover {
+    background: #6d0000;
+}
+
+/* ===== EVENTOS ===== */
+
+.evento {
     border: 2px solid #b3b3b3;
     border-radius: 12px;
     padding: 15px;
     margin-bottom: 20px;
-    background: #f8f8f8;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.aplicado{
+.aplicado {
     border-color: #2e7d32;
     background: #e8f5e9;
 }
 
-.pendiente{
+.pendiente {
     border-color: #ef6c00;
     background: #fff8e1;
 }
 
-.evento h2{
+.evento h2 {
     margin-top: 0;
-    margin-bottom: 10px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #ccc;
 }
 
-.evento p{
-    margin: 8px 0;
-}
-.eliminar{
-    background: #d32f2f;
+/* ===== BOTONES EVENTOS ===== */
+
+.btn-asignar {
+    background: #388e3c;
     color: white;
 }
 
-.modificar{
+.btn-modificar {
     background: #f57c00;
     color: white;
 }
 
-.asignar{
-    background: #388e3c;
+.btn-eliminar {
+    background: #d32f2f;
     color: white;
+}
+
+/* ===== CELULAR ===== */
+
+@media (max-width: 700px) {
+
+    .patrulla h2 {
+        font-size: 1.8rem;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 5px;
+    }
 }
