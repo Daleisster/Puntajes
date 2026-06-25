@@ -102,7 +102,6 @@ function actualizar_puntaje (patrulla) {
 // funcion para actualizar los eventos en pantalla y memoria local
 function actualizar_eventos () {
     let eventlist = document.getElementById("listaeventos")
-    eventlist.innerHTML = ""
     let html=""
     for (let e in Eventos) {
 
@@ -111,33 +110,39 @@ function actualizar_eventos () {
             html += "<h2>"+e+" ~ Aplicado ✓"+"</h2>"
             html += "<p>1° "+Eventos[e].Puntajes.primero+" pts ||| 2° "+Eventos[e].Puntajes.segundo+" pts ||| 3° "+Eventos[e].Puntajes.tercero+" pts</p>"
             for (let lugar in Eventos[e].Resultado)
-                if (lugar==="primero") {html += "<p>1° "+Eventos[e].Resultado.primero+"</p>"}
-                else if (lugar==="segundo") {html += "<p>2° "+Eventos[e].Resultado.segundo+"</p>"}
-                else if (lugar==="tercero") {html += "<p>3° "+Eventos[e].Resultado.tercero+"</p>"}
-            html += '</div>'
-            html +='<br><br>'
-            eventlist.innerHTML = html
+                if (lugar==="primero") {html += "<p>1° "+Eventos[e].Resultado.primero.join(" y ")+"</p>"}
+                if (lugar==="segundo") {html += "<p>2° "+Eventos[e].Resultado.segundo.join(" y ")+"</p>"}
+                if (lugar==="tercero") {html += "<p>3° "+Eventos[e].Resultado.tercero.join(" y ")+"</p>"}
+            html += '</div><br><br>'
         }
 
         else {
             html += '<div class="evento pendiente">'
             html += "<h2>"+e+" ~ Pendiente"+"</h2>"
             html += "<p>1° "+Eventos[e].Puntajes.primero+" pts ||| 2° "+Eventos[e].Puntajes.segundo+" pts ||| 3° "+Eventos[e].Puntajes.tercero+" pts</p>"
-            html +='<button onclick="mostrar_asignacion(\''+e+'\')">Asignar</button>'
-            html +='<button onclick="modificar_evento(\''+e+'\')">Modificar</button>'
-            html +='<button onclick="eliminar_evento(\''+e+'\')">Eliminar</button>'
-            html += '</div>'
-            html += '<br><br>'
-            eventlist.innerHTML = html
+            html +='<button class="btn-asignar" data-evento="'+e+'">Asignar</button>'
+            html +='<button class="btn-modificar" data-evento="'+e+'">Modificar</button>'
+            html +='<button class="btn-eliminar" data-evento="'+e+'">Eliminar</button>'
+            html += '</div><br><br>'
         }
-     
     }
-        eventlist.innerHTML += "<br>"
+    eventlist.innerHTML = html + "<br>"
+    
     localStorage.setItem("events",JSON.stringify(Eventos))
-
     if (EventosCargados) {
         set(ref(db, "eventos"), Eventos)
+    }
 }
+document.getElementById("listaeventos").addEventListener("click", function(event) {
+    if (event.target.tagName === "BUTTON") {
+        let nombreDelEvento = event.target.getAttribute("data-evento")
+        if (event.target.classList.contains("btn-asignar")) {
+            mostrar_asignacion(nombreDelEvento)
+        if (event.target.classList.contains("btn-modificar")) {
+            modificar_evento(nombreDelEvento)
+        if (event.target.classList.contains("btn-eliminar")) {
+            eliminar_evento(nombreDelEvento)
+    } 
 }
 
 //mostrar la pantalla para asignar un evento
