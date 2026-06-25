@@ -1,4 +1,5 @@
 
+
 /*/
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js"
 import {getDatabase, ref, set, onValue, get} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js"
@@ -414,3 +415,4 @@ botonCrear.onclick = function(){
 
 /*/Ejecuar la página/*/
 actualizar_eventos()
+
