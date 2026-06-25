@@ -296,14 +296,34 @@ botonCancelarMod.onclick = function(){
 //botones para sumar y restar puntos a patrullas
 for (let p in Puntajes) {
     actualizar_puntaje(p)
+    let botonplus10 = document.getElementById("plus10"+p)
     let botonplus50 = document.getElementById("plus50"+p)
+    let botonplus100 = document.getElementById("plus100"+p)
     let botonminus10 = document.getElementById("dcto10"+p)
+    let botonminus50 = document.getElementById("dcto50"+p)
+    let botonminus100 = document.getElementById("dcto100"+p)
+    botonplus10.onclick = function() {
+        Puntajes[p] += 10
+        actualizar_puntaje(p)
+    }
     botonplus50.onclick = function() {
         Puntajes[p] += 50
         actualizar_puntaje(p)
     }
+    botonplus100.onclick = function() {
+        Puntajes[p] += 100
+        actualizar_puntaje(p)
+    }
     botonminus10.onclick = function() {
         Puntajes[p] -= 10
+        actualizar_puntaje(p)
+    }
+    botonminus50.onclick = function() {
+        Puntajes[p] -= 50
+        actualizar_puntaje(p)
+    }
+    botonminus100.onclick = function() {
+        Puntajes[p] -= 100
         actualizar_puntaje(p)
     }
 }
