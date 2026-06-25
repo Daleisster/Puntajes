@@ -1,5 +1,3 @@
-
-
 import { db, ref, set, onValue } from "./firebase.js"
 /*/ Declarar variables, objetos y weaitas /*/
 //definir el objeto "Puntajes" con las patrullas y "Eventos"
@@ -425,4 +423,3 @@ botonCrear.onclick = function(){
 
 /*/Ejecuar la página/*/
 actualizar_eventos()
-
