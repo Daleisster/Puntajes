@@ -32,10 +32,10 @@ select {
 
 /* ===== PATRULLAS ===== */
 
-#pointscreen {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.contenedor-patrullas {
+    display:flex;
+    flex-direction:column;
+    gap:20px;
 }
 
 .patrulla {
