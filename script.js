@@ -1,6 +1,7 @@
 
+/*/
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js"
-import {getDatabase, ref, set, onValue} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js"
+import {getDatabase, ref, set, onValue, get} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js"
 const firebaseConfig = {
     apiKey: "AIzaSyBvEXT5k4kvaqq3jW394Fq5ueom4CxMF2o",
     authDomain: "puntajes-kutral.firebaseapp.com",
@@ -12,6 +13,8 @@ const firebaseConfig = {
 }
 const app = initializeApp(firebaseConfig)
 const db = getDatabase(app)
+/*/
+import { db, ref, set, onValue } from "./firebase.js";
 
 /*/ Declarar variables, objetos y weaitas /*/
 //definir el objeto "Puntajes" con las patrullas y "Eventos"
