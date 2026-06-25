@@ -23,7 +23,6 @@ onValue(ref(db, "puntajes"), (snapshot) => {
             if (txt) {
                 txt.textContent = p + ": " + Puntajes[p]
             }
-            set(ref(db, "puntajes"), Puntajes)
         }
     }
     CargandoFirebase = false
