@@ -1,22 +1,6 @@
 
 
-/*/
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js"
-import {getDatabase, ref, set, onValue, get} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js"
-const firebaseConfig = {
-    apiKey: "AIzaSyBvEXT5k4kvaqq3jW394Fq5ueom4CxMF2o",
-    authDomain: "puntajes-kutral.firebaseapp.com",
-    databaseURL: "https://puntajes-kutral-default-rtdb.firebaseio.com",
-    projectId: "puntajes-kutral",
-    storageBucket: "puntajes-kutral.firebasestorage.app",
-    messagingSenderId: "1048990383919",
-    appId: "1:1048990383919:web:18ccbea65e0b16435febda"
-}
-const app = initializeApp(firebaseConfig)
-const db = getDatabase(app)
-/*/
-import { db, ref, set, onValue } from "./firebase.js";
-
+import { db, ref, set, onValue } from "./firebase.js"
 /*/ Declarar variables, objetos y weaitas /*/
 //definir el objeto "Puntajes" con las patrullas y "Eventos"
 let Puntajes = {
@@ -39,16 +23,19 @@ onValue(ref(db, "puntajes"), (snapshot) => {
             if (txt) {
                 txt.textContent = p + ": " + Puntajes[p]
             }
+            set(ref(db, "puntajes"), Puntajes)
         }
     }
     CargandoFirebase = false
 })
+
 onValue(ref(db, "eventos"), (snapshot) => {
     let datos = snapshot.val()
-    if (datos) {
-        Eventos = datos
-        actualizar_eventos()
-    }
+
+    Eventos = datos || {}
+
+    actualizar_eventos()
+
     EventosCargados = true
 })
 
@@ -137,6 +124,7 @@ function actualizar_eventos () {
         set(ref(db, "eventos"), Eventos)
     }
 }
+
 document.getElementById("listaeventos").addEventListener("click", function(event) {
     if (event.target.tagName === "BUTTON") {
         let nombreDelEvento = event.target.getAttribute("data-evento")
@@ -150,7 +138,7 @@ document.getElementById("listaeventos").addEventListener("click", function(event
             eliminar_evento(nombreDelEvento)
         }
     }
-}
+})
 
 //mostrar la pantalla para asignar un evento
 function mostrar_asignacion (ev) {
@@ -322,6 +310,9 @@ for (let p in Puntajes) {
 //botón pa resetear los puntajes y desasignar los eventos
 let boton_reset = document.getElementById("resetPTS")
 boton_reset.onclick = function() {
+    if (!confirm("¿Seguro que deseas reiniciar todos los puntajes y asignaciones de eventos?")){
+        return
+    }
     for (let p in Puntajes) {
         Puntajes[p] = 0
         actualizar_puntaje(p)
