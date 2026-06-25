@@ -141,11 +141,14 @@ document.getElementById("listaeventos").addEventListener("click", function(event
         let nombreDelEvento = event.target.getAttribute("data-evento")
         if (event.target.classList.contains("btn-asignar")) {
             mostrar_asignacion(nombreDelEvento)
+        }
         if (event.target.classList.contains("btn-modificar")) {
             modificar_evento(nombreDelEvento)
+        }
         if (event.target.classList.contains("btn-eliminar")) {
             eliminar_evento(nombreDelEvento)
-    } 
+        }
+    }
 }
 
 //mostrar la pantalla para asignar un evento
